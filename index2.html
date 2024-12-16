@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>鶴岡家 - 妙慧</title>
+
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+
+      .app-background {
+        background-color: antiquewhite;
+        max-width: 720px;
+      }
+      .title {
+        color: #8b4513;
+      }
+      .wanted-wrapper {
+        position: relative;
+      }
+
+      .wanted-wrapper .name {
+        position: absolute;
+        display: inline-block;
+        width: fit-content;
+        bottom: 6.1rem;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        font-size: 3.2rem;
+        color: #4e3632;
+      }
+
+      .wanted-wrapper .money {
+        letter-spacing: 7px;
+        font-size: 2rem;
+        position: absolute;
+        display: inline-block;
+        width: fit-content;
+        bottom: 3.6rem;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        color: #4e3632;
+      }
+
+      .photo-wrapper {
+        position: absolute;
+        bottom: 13.3rem;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        width: 82%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="m-auto h-full app-background">
+      <div class="title pt-4 mb-2 text-center">
+        <p class="text-lg bold">進入偉大的航道</p>
+        <p class="text-2xl bold" id="timer">1天5時10分59秒</p>
+
+        <small>
+          <i>鶴岡家 wanted you!</i>
+        </small>
+      </div>
+      <div class="wanted-wrapper">
+        <img class="w-full" src="./images/wanted.png" alt="wanted" />
+        <div class="photo-wrapper">
+          <img class="photo w-full" src="./images/photo.png" alt="photo" />
+        </div>
+
+        <p class="name">妙妙</p>
+        <p class="money">5,000,000,000</p>
+      </div>
+    </div>
+
+    <script>
+      (() => {
+        var timer = document.getElementById("timer");
+        var targetTime = new Date("2024/5/31 23:59:59").getTime();
+
+        function draw() {
+          var now = new Date().getTime();
+          var distance = targetTime - now;
+
+          var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          var hours = Math.floor(
+            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          );
+          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          timer.innerHTML =
+            days + "天" + hours + "時" + minutes + "分" + seconds + "秒";
+        }
+
+        function startLoad() {
+          draw();
+          setTimeout(function () {
+            startLoad();
+          }, 1000);
+        }
+
+        startLoad();
+      })();
+    </script>
+  </body>
+</html>
